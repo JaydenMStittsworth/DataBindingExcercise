@@ -123,7 +123,6 @@ namespace DataBindingExcercise
             Contacts.Add(newContact);
 
             // pull the lever to update
-            UpdateContactList();
             ClearForm();
             txtFirstName.Focus();
         }
