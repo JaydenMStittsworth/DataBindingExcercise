@@ -26,20 +26,25 @@ namespace DataBindingExcercise
 
             // connects the contactBindingSource to Contacts
             contactBindingSource.DataSource = Contacts;
+
+            // event handler method that calls when the list is changed
+            contactBindingSource.ListChanged += ContactBindingSource_ListChanged;
         }
 
-        public void UpdateContactList()
+        private void ContactBindingSource_ListChanged(object? sender, ListChangedEventArgs e)
         {
-            // refreshes the list box with the newest contacts
-            
-            fpContacts.Controls.Clear();
-
-            foreach (Contact contact in Contacts)
+            // code for item being added to the list
+            if (e.ListChangedType == ListChangedType.ItemAdded)
             {
-                var item = new ContactControl(contact);
-                item.Parent = this;
-                fpContacts.Controls.Add(item);
+                var contact = Contacts[e.NewIndex];
+                AddContactControl(contact);
             }
+        }
+
+        private void AddContactControl(Contact contact)
+        {
+            var item = new ContactControl(contact);
+            fpContacts.Controls.Add(item);
         }
 
         public void AddContact(
