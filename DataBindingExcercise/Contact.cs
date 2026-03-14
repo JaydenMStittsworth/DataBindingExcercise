@@ -25,20 +25,10 @@ namespace DataBindingExcercise
         public string? PhoneNumber { get; set; }
         public bool IsContacted { get; set; } = false;
 
-        // construct a new contact
-        public Contact()
-        {
-            
-        }
-
         // what a contact can do (print to string)
         public override string? ToString()
         {
             return $"Name: {FirstName} {LastName} Phone: {PhoneNumber} Email: {Email} - Contacted: {IsContacted}";
         }
-
-
-        
-
     }
 }
