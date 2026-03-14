@@ -39,8 +39,21 @@ namespace DataBindingExcercise
                 var contact = Contacts[e.NewIndex];
                 AddContactControl(contact);
             }
+            // code for item being removed from the list
+            else if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                // removes item from the list
+                fpContacts.Controls.Clear();
+
+                // refreshes the list
+                foreach (var contact in Contacts)
+                {
+                    AddContactControl(contact);
+                }
+            }
         }
 
+        // defines what AddContactControl is
         private void AddContactControl(Contact contact)
         {
             var item = new ContactControl(contact);
@@ -66,34 +79,6 @@ namespace DataBindingExcercise
         public void AddContact(Contact contact)
         {
             Contacts.Add(contact);
-        }
-
-        private void ContactForm_Load(object sender, EventArgs e)
-        {
-            //foreach (var contact in Contacts)
-            //{
-            //    Debug.WriteLine(contact);
-            //}
-        }
-
-        private void lbContacts_Click(object sender, EventArgs e)
-        {
-            //Contact selectedObj = (Contact)lbContacts.SelectedItem;
-
-            //if (selectedObj != null)
-            //{
-            //    int selectedIndex = lbContacts.SelectedIndex;
-            //    Debug.WriteLine($"contact list box was clicked - {selectedObj}");
-
-            //    selectedObj.IsContacted = true;
-
-            //    lbContacts.Items[selectedIndex] = selectedObj;
-
-            //    // show message box saying we contacted them
-            //    MessageBox.Show($"Contacted customer: {selectedObj.FirstName}. Marked status to contacted.", "Success");
-            //}
-
-            // TODO: do i even need this?
         }
 
         private void btnSave_Click(object sender, EventArgs e)
