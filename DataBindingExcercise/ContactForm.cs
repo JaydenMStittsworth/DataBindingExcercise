@@ -1,6 +1,6 @@
 
 
-using System.Diagnostics;
+using System.ComponentModel;
 
 #pragma warning disable WFO1000
 
@@ -8,14 +8,24 @@ namespace DataBindingExcercise
 {
     public partial class ContactForm : Form
     {
-        public List<Contact> Contacts { get; set; }
+        // This is a more specific version of a list
+        public BindingList<Contact> Contacts { get; set; }
+
+        // This is responsible for what happens as events trigger in the Contacts property
+        private BindingSource contactBindingSource;
 
         public ContactForm()
         {
             InitializeComponent();
-            Contacts = new List<Contact>();
 
-            UpdateContactList();
+            // create an empty Contacts list
+            Contacts = new BindingList<Contact>();
+
+            // create a new BindingSource
+            contactBindingSource = new BindingSource();
+
+            // connects the contactBindingSource to Contacts
+            contactBindingSource.DataSource = Contacts;
         }
 
         public void UpdateContactList()
