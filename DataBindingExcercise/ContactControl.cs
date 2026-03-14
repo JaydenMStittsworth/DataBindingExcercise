@@ -20,10 +20,10 @@ namespace DataBindingExcercise
             InitializeComponent();
             ContactDetails = contactDetails;
 
-            // fill in all of the details on the control using the data
-            lblFullName.Text = ContactDetails.FullName;
-            lblAddress.Text = ContactDetails.Email;
-            lblPhoneNumber.Text = ContactDetails.PhoneNumber;
+            // fill in all of the details on the control using the data binding
+            lblFullName.DataBindings.Add("Text", ContactDetails, "FullName");
+            lblAddress.DataBindings.Add("Text", ContactDetails, "Email");
+            lblPhoneNumber.DataBindings.Add("Text", ContactDetails, "PhoneNumber");
         }
 
         private void btnMarkContacted_Click(object sender, EventArgs e)
@@ -33,8 +33,9 @@ namespace DataBindingExcercise
 
             if (frm != null)
             {
+                // delete contact from contacts list
+                // data binding deletes control automatically
                 frm.Contacts.Remove(ContactDetails);
-                frm.UpdateContactList();
             }
         }
     }
